@@ -21,12 +21,11 @@ def _loading_example_dataset() -> None:
     # found from digits.data.shape.   It looks like
     # digits.target returns the size of each digits.images
     # dataset.
-    print(f"Image[0]: {digits.images[0]}")
-    print("\n")
-    print(f"Image[1]: {digits.images[1]}")
-    print("\n")
-    print(f"Image[1796]: {digits.images[1796]}")
-    print("\n")
+    print(f"Image[0]: \n{digits.images[0]}\n")
+
+    print(f"Image[1]: \n{digits.images[1]}\n")
+
+    print(f"Image[1796]: \n{digits.images[1796]}\n")
 
 
 if __name__ == "__main__":
