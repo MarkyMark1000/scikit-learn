@@ -1,5 +1,5 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)   
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=logo=scikit-learn&logoColor=white)
 
 # OVERVIEW
@@ -20,6 +20,14 @@ and can be run as follows:
 black .
 isort .
 flake8 .
+```
+
+A pre-commit config file has also been provided.   I tend to run this in a different terminal to
+the virtual environment and prefer to install this as a pre-push:
+
+```
+brew install pre-commit
+pre-commit install -t pre-push
 ```
 
 ## Setup
