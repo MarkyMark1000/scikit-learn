@@ -1,6 +1,3 @@
 [tool.black]
 line-length = 88
 exclude = 'venv/'
-
-[tool.isort]
-skip = [".gitignore", "venv/"]
