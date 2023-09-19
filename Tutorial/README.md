@@ -18,6 +18,38 @@ Machine learning is generally split into two large categories:
 Training and Testing Set - it is common to split data into two sets, one to
 train the algorithm on and a second used to test the trained algorithm on.
 
-## Outstanding Questions
+### Confusion Matrix
 ---
 
+This is a table used to help assess where errors in the model were made.
+
+The rows represent the actual classes the outcomes should have been.
+While the columns represent the predictions we have made. Using this table it
+is easy to see which predictions are wrong.
+
+### Classification Report
+---
+
+This is helpful for displaying metrics on how accurate the model was:
+
+Accuracy: measures how often the model is correct.
+
+Precision: Of the positives predicted, what percentage is truly positive?
+
+Sensitivity or Recall: Of all the positive cases, what percentage are predicted positive?
+
+F Score: F-score is the "harmonic mean" of precision and sensitivity.
+
+Support: Number of actual occurances in the dataset.
+
+There is a basic example here, which may be of use:
+https://www.w3schools.com/python/python_ml_confusion_matrix.asp
+
+What are good values for these statistics (from google):
+
+            f1-score    Accuracy    Recall
+Excellent   > 0.85                  > 0.8
+Good        > 0.7        > 0.7      > 0.7
+
+## Outstanding Questions
+---
