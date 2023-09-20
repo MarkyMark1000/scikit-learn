@@ -1,6 +1,11 @@
 import matplotlib.pyplot as plt
-from sklearn import datasets, metrics, svm
+import numpy as np
+from sklearn import datasets, kernel_approximation, metrics, svm
+from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.preprocessing import LabelBinarizer, MultiLabelBinarizer
+from sklearn.svm import SVC
 
 
 def _loading_example_dataset() -> None:
@@ -127,8 +132,107 @@ def _recognizing_hand_written_digits():
     )
 
 
+def _conventions():
+    """
+    Type Casting:
+    Where possible, input of type float32 will maintain its data
+    type. Otherwise input will be cast to float64.
+    """
+
+    rng = np.random.RandomState(0)
+    X = rng.rand(10, 2000)
+    X = np.array(X, dtype="float32")
+    print(X.dtype)
+
+    transformer = kernel_approximation.RBFSampler()
+    X_new = transformer.fit_transform(X)
+    print(X_new.dtype)
+
+    # Here, the first predict() returns an integer array,
+    # since iris.target (an integer array) was used in fit.
+    # The second predict() returns a string array, since
+    # iris.target_names was for fitting.
+
+    iris = datasets.load_iris()
+    clf = SVC()
+    print(clf.fit(iris.data, iris.target))
+    # SVC()
+
+    print(list(clf.predict(iris.data[:3])))
+    # [0, 0, 0]
+
+    print(clf.fit(iris.data, iris.target_names[iris.target]))
+    # SVC()
+
+    print(list(clf.predict(iris.data[:3])))
+    # ['setosa', 'setosa', 'setosa']
+
+    # Refitting and updating parameters
+
+    #   Hyper-parameters of an estimator can be updated after it
+    #   has been constructed via the set_params() method. Calling
+    #   fit() more than once will overwrite what was learned by
+    #   any previous fit():
+
+    X, y = load_iris(return_X_y=True)
+
+    clf = SVC()
+    print(clf.set_params(kernel="linear").fit(X, y))
+    # SVC(kernel='linear')
+
+    print(clf.predict(X[:5]))
+    # array([0, 0, 0, 0, 0])
+
+    print(clf.set_params(kernel="rbf").fit(X, y))
+    # SVC()
+
+    print(clf.predict(X[:5]))
+    # array([0, 0, 0, 0, 0])
+
+    # MultiClass vs MultiLabel fitting
+
+    # In the above case, the classifier is fit on a 1d array
+    # of multiclass labels and the predict() method therefore
+    # provides corresponding multiclass predictions
+    X = [[1, 2], [2, 4], [4, 5], [3, 2], [3, 1]]
+    y = [0, 0, 1, 1, 2]
+    classif = OneVsRestClassifier(estimator=SVC(random_state=0))
+    print(classif.fit(X, y).predict(X))
+    # array([0, 0, 1, 1, 2])
+
+    # Here, the classifier is fit() on a 2d binary label
+    # representation of y, using the LabelBinarizer. In this
+    # case predict() returns a 2d array representing the
+    # corresponding multilabel predictions.
+
+    y = LabelBinarizer().fit_transform(y)
+    print(classif.fit(X, y).predict(X))
+    # array([[1, 0, 0],
+    #        [1, 0, 0],
+    #        [0, 1, 0],
+    #        [0, 0, 0],
+    #        [0, 0, 0]])
+
+    # In this case, the classifier is fit upon instances
+    # each assigned multiple labels. The MultiLabelBinarizer
+    # is used to binarize the 2d array of multilabels to fit
+    # upon. As a result, predict() returns a 2d array with
+    # multiple predicted labels for each instance.
+
+    y = [[0, 1], [0, 2], [1, 3], [0, 2, 3], [2, 4]]
+    y = MultiLabelBinarizer().fit_transform(y)
+    print(classif.fit(X, y).predict(X))
+    # array([[1, 1, 0, 0, 0],
+    #        [1, 0, 1, 0, 0],
+    #        [0, 1, 0, 1, 0],
+    #        [1, 0, 1, 0, 0],
+    #        [1, 0, 1, 0, 0]])
+
+
 if __name__ == "__main__":
 
     _loading_example_dataset()
 
     _recognizing_hand_written_digits()
+
+    _conventions()
