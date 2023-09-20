@@ -35,7 +35,7 @@ def _loading_example_dataset() -> None:
     print(f"Image[1796]: \n{digits.images[1796]}\n")
 
 
-def _recognizing_hand_written_digits():
+def _recognizing_hand_written_digits() -> None:
     """
     This is a sub section/example within the previous tutorial
 
@@ -132,7 +132,7 @@ def _recognizing_hand_written_digits():
     )
 
 
-def _conventions():
+def _conventions() -> None:
     """
     Type Casting:
     Where possible, input of type float32 will maintain its data
