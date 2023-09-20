@@ -51,5 +51,34 @@ What are good values for these statistics (from google):
 Excellent   > 0.85                  > 0.8
 Good        > 0.7        > 0.7      > 0.7
 
+### Loading from external datasets
+---
+
+There is a section, with little code here:
+https://scikit-learn.org/stable/datasets/loading_other_datasets.html#external-datasets
+
+### Learning and Predicting
+---
+
+The two key routines are fit() and predict(), which fit the model to training data
+and then try to predict results on test data.
+
+The tutorial uses a support vector machine model with arguments of gamma=0.001.
+
+This value was input manually, but can be estimated using grid search.
+
+```
+Two generic approaches to parameter search are provided in scikit-learn: for given
+values, GridSearchCV exhaustively considers all parameter combinations, while
+RandomizedSearchCV can sample a given number of candidates from a parameter space
+with a specified distribution. Both these tools have successive halving counterparts
+HalvingGridSearchCV and HalvingRandomSearchCV, which can be much faster at finding
+a good parameter combination.
+```
+
+https://scikit-learn.org/stable/modules/grid_search.html#grid-search
+
+
+
 ## Outstanding Questions
 ---
