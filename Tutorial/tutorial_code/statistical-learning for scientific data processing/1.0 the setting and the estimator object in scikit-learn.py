@@ -26,7 +26,7 @@ def _datasets() -> None:
     # (1797, 8, 8)
 
     plt.imshow(digits.images[-1], cmap=plt.cm.gray_r)
-    plt.savefig("./Images/output_plot.png")
+    plt.savefig("./Images/1_output_plot.png")
 
     # To use the data, we reshape it:
     data = digits.images.reshape((digits.images.shape[0], -1))

@@ -10,6 +10,12 @@ I play around with.
 Other README.md files have been created within sub-directories to keep some basic notes
 on what has been done.
 
+Relatively early on, I worked out that this tutorial is just dull.   It doesn't
+really feel like you are learning much and it doesn't go into much detail.
+To really get a better feeling for machine learning I think one of the
+ML Udemy courses would be a better option.   A high rated one with many hours
+of video.
+
 ## Code Formatting
 ---
 
